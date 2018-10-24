@@ -5,28 +5,29 @@ class Song < ActiveRecord::Base
   # add associations here
   def artist_name=(name)
   self.artist = Artist.find_or_create_by(name: name)
-end
+  end
 
-def artist_name
-   self.artist ? self.artist.name : nil
-end
+  def artist_name
+     self.artist ? self.artist.name : nil
+  end
 
   def genre_name=(name)
   self.genre = Genre.find_or_create_by(name: name)
-end
+  end
 
-def genre_name
+  def genre_name
    self.genre ? self.genre.name : nil
-end
+  end
 
-def note_contents=(notes)
+  def note_contents=(notes)
    notes.each do |content|
      if content.strip != ""
        self.notes.build(content: content)
-     end
+      end
+    end
   end
-end
- def note_contents
-   self.notes.collect {|n| n.content} 
-end
+
+  def note_contents
+   self.notes.collect {|n| n.content}
+ end
 end
